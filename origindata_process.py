@@ -86,10 +86,10 @@ def data_filter(folder_path):
             new_data.append([x, y])
         
         
-        with open('Eye/test.json', 'w', encoding='utf-8') as f:
+        with open('test.json', 'w', encoding='utf-8') as f:
             data["eye_data"] = new_data
             json.dump(data, f, indent=4, ensure_ascii=False)
             
         break
     
-data_filter('Eye/exampledata')
+data_filter('exampledata')

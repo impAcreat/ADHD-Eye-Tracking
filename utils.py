@@ -17,7 +17,7 @@ def load_data(filename):
     pdata = pd.DataFrame(data_raw)
     wRes = screenRes[0][0]
     hRes = screenRes[0][1]
-    print(f"-- screenRes: {wRes}ß, {hRes}")
+    # print(f"-- screenRes: {wRes}, {hRes}")
 
     x=pdata.iloc[:, 3:5].values
     y=pdata.iloc[:, 5].values
@@ -67,6 +67,14 @@ def binary_label(labels):
 
 def preprocess(samples, labels, sequence_dim = 100, sequence_lag = 1, sequence_attributes = 2):
     samples = calc_xy_velocity(samples)
+
+    # analyze_difference(samples)
+
     samples, labels = make_sequences(samples, labels, sequence_dim, sequence_lag, sequence_attributes)
     labels = binary_label(labels)
     return samples, labels
+
+def analyze_difference(samples):
+    x_dif = np.abs(samples[:, 0]).mean()
+    y_dif = np.abs(samples[:, 1]).mean()
+    print(f"-- difference x: {x_dif}, y: {y_dif}")
